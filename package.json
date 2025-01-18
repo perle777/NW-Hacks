@@ -16,6 +16,8 @@
   "bugs": {
     "url": "https://github.com/perle777/NW-Hacks/issues"
   },
-  "homepage": "https://github.com/perle777/NW-Hacks#readme"
+  "homepage": "https://github.com/perle777/NW-Hacks#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
-
