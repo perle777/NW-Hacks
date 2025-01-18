@@ -1,0 +1,23 @@
+{
+  "name": "nw-hacks",
+  "version": "1.0.0",
+  "description": "A backend for NW Hacks project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/perle777/NW-Hacks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/perle777/NW-Hacks/issues"
+  },
+  "homepage": "https://github.com/perle777/NW-Hacks#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
