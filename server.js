@@ -1,4 +1,5 @@
 const express = require('express');
+<<<<<<< HEAD
 const app = express();
 
 // Middleware to parse JSON
@@ -34,3 +35,25 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+=======
+const bodyParser = require('body-parser');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
+
+// Routes
+app.get('/', (req, res) => {
+    res.send('Server is running');
+});
+
+// Start Server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+>>>>>>> 0156cfc (Initial backend setup)
