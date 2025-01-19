@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const { getFirestore, collection, addDoc, getDocs } = require('firebase/firestore');
-const { initializeApp } = require('firebase/app');
-const firebaseConfig = require('public/js/firebaseAPI'); 
+const app = express();
+// const { getFirestore, collection, addDoc, getDocs } = require('firebase/firestore');
+// const { initializeApp } = require('firebase/app');
+// const firebaseConfig = require('public/js/firebaseAPI.js'); 
 
 app.use(express.json());
 
