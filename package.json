@@ -1,6 +1,8 @@
 {
   "name": "nw-hacks",
   "version": "1.0.0",
+<<<<<<< HEAD
+<<<<<<< HEAD
   "description": "A backend for NW Hacks project",
   "main": "server.js",
   "scripts": {
@@ -18,6 +20,27 @@
   },
   "homepage": "https://github.com/perle777/NW-Hacks#readme",
   "dependencies": {
+=======
+=======
+>>>>>>> stella-authentication
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+<<<<<<< HEAD
+>>>>>>> 0156cfc (Initial backend setup)
     "express": "^4.21.2"
+=======
+    "express": "^4.21.2",
+    "firebase": "^11.2.0"
+>>>>>>> stella-authentication
   }
 }
