@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Gratitude Journal</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"/>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./login.css">
+
+  <!-- Firebase Configuration -->
+  <script src="../scripts/firebaseAPI.js"></script> <!-- Your Firebase API configuration -->
+</head>
+<body class="bg-light">
+
+  <!-- Center the login card -->
+  <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;">
+      <h2 class="text-center text-primary mb-4">Account Login</h2>
+
+      <!-- Firebase UI Authentication Container -->
+      <div id="firebaseui-auth-container"></div>
+
+      <!-- Loader (optional, hides after Firebase UI is ready) -->
+      <div id="loader" class="text-center">Loading...</div>
+
+    </div>
+  </div>
+
+  <!-- Firebase Authentication Script -->
+  <script src="../scripts/authentication.js"></script> <!-- Your authentication script -->
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
