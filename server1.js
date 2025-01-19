@@ -11,6 +11,10 @@ app.use(express.json());
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html')); // Adjust the file path as needed
+});
+
 // Define routes for serving HTML pages
 app.get('/journal', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'journal.html'));
