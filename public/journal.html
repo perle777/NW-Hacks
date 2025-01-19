@@ -17,7 +17,6 @@
 
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 
-    <script src="js/script.js"></script>
 </head>
 <body>
     <header>
@@ -35,23 +34,15 @@
 
     </nav>
 
-    <section id="promptSection">
-        <h2>Your Prompt</h2>
-        <p id="prompt">Loading prompt...</p>
-      </section>
-
-    <section id="entrySection">
+    <section>
         <h2>Write A Journal Entry</h2>
+        <p id="prompt"></p>
         <form id="journalForm">
             <label for="userInput">Enter your text:</label><br>
-            <textarea id="response" name="response"></textarea><br><br>
+            <textarea id="userInput" name="userInput"></textarea><br><br>
             <button type="submit">Submit</button>
         </form>
-    </section>
-
-    <section id="confirmationSection" style="display: none;">
-        <h2>Thank You!</h2>
-        <p>Your journal entry has been saved.</p>
+        <div id="responseMessage"></div>        
     </section>
 
     <footer>
@@ -63,8 +54,8 @@
             <li><a href="https://www.linkedin.com/in/perle-suddaby" target="_blank">Perle</a></li>
             <li><a href="https://www.linkedin.com/in/stella-hui/" target="_blank">Stella</a></li>
         </ul>
-    </footer>
-
-<script src="js/journal.js"></script>
+        
+      </footer>
+    <script src="js/journal.js"></script>
 </body>
 </html>

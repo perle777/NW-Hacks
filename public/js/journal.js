@@ -1,37 +1,55 @@
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async function () {
+  // Fetch a random prompt from the server
   try {
-    const response = await fetch('/prompt');
-    const data = await response.json();
-    document.getElementById('prompt').textContent = data.prompt;
+      const response = await fetch('http://localhost:3000/prompt');
+      const data = await response.json();
+
+      // Display the prompt in the HTML
+      const promptElement = document.getElementById('prompt');
+      if (promptElement) {
+          promptElement.innerText = data.prompt;
+      }
   } catch (error) {
-    console.error('Error fetching prompt:', error);
-    document.getElementById('prompt').textContent = 'Failed to load prompt. Please try again later.';
+      console.error('Error fetching prompt:', error);
   }
-});
 
-document.getElementById('journalForm').addEventListener('submit', async (event) => {
-  event.preventDefault(); 
-  const responseText = document.getElementById('response').value;
-  const promptText = document.getElementById('prompt').textContent;
+  // Add event listener for the journal form submission
+  document.getElementById('journalForm').addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent the default form submission behavior
 
-  try {
-    const res = await fetch('/journal', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ prompt: promptText, response: responseText })
-    });
+      const userInput = document.getElementById('userInput').value;
 
-    if (res.ok) {
-      document.getElementById('entrySection').style.display = 'none';
-      document.getElementById('confirmationSection').style.display = 'block';
-    } else {
-      const errorData = await res.json();
-      alert(`Error: ${errorData.message}`);
-    }
-  } catch (error) {
-    console.error('Error saving journal entry:', error);
-    alert('Failed to save your entry. Please try again.');
-  }
+      if (!userInput) {
+          alert("Please enter your journal entry!");
+          return;
+      }
+
+      try {
+          // Send a POST request to the backend
+          const response = await fetch('http://localhost:3000/journal', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ entry: userInput })
+          });
+
+          const result = await response.json();
+
+          // Display the response message or quote in the HTML
+          if (response.ok) {
+              document.getElementById('responseMessage').innerText = `
+                  Journal added successfully! Here's an inspirational quote: 
+                  "${result.inspirationalQuote}"
+              `;
+          } else {
+              document.getElementById('responseMessage').innerText = `
+                  Error: ${result.message || "Something went wrong"}
+              `;
+          }
+      } catch (error) {
+          console.error("Error submitting journal:", error);
+          document.getElementById('responseMessage').innerText = "An error occurred. Please try again.";
+      }
+  });
 });
