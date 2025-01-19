@@ -1,21 +1,18 @@
 require('dotenv').config();
-
 const express = require('express');
-const axios = require('axios');
 const path = require('path');
-const app = express();
+const { getFirestore, collection, addDoc, getDocs } = require('firebase/firestore');
+const { initializeApp } = require('firebase/app');
+const firebaseConfig = require('public/js/firebaseAPI'); 
 
-// Middleware to parse JSON
 app.use(express.json());
 
-// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.redirect('/home'); // Redirect to the home page
+    res.redirect('/home'); 
 });
 
-// Define routes for serving HTML pages
 app.get('/journal', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'journal.html'));
 });
@@ -28,44 +25,24 @@ app.get('/entries', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'entries.html'));
 });
 
-// Journal route (For adding new journal entries)
-app.post('/journal', async (req, res) => {
-    const { entry } = req.body;
-    if (!entry) {
-        return res.status(400).json({ message: 'Entry is required.' });
-    }
-
+app.get('/entries/data', async (req, res) => {
     try {
-        // Fetch a quote from the API Ninjas Quotes API
-        const response = await axios.get('https://api.api-ninjas.com/v1/quotes', {
-            headers: { 'X-Api-Key': process.env.API_NINJAS_KEY } // Your API key from .env
-        });
+        const querySnapshot = await getDocs(collection(db, 'journalEntries'));
+        const entries = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-        const quote = response.data[0]; // Extract the first quote from the response
-
-        res.status(201).json({
-            message: 'New journal entry added!',
-            entry,
-            inspirationalQuote: `${quote.quote} - ${quote.author}`
-        });
+        res.status(200).json({ entries });
     } catch (error) {
-        console.error('Error fetching quote:', error.message);
-        res.status(500).json({ 
-            message: 'Journal entry added, but there was an error fetching the quote.',
-            entry,
-            error: error.message
-        });
+        console.error('Error fetching entries:', error);
+        res.status(500).json({ message: 'Failed to fetch journal entries.', error: error.message });
     }
 });
-
-// Entries route (For viewing past journal entries)
-app.get('/entries/data', (req, res) => {
-    const entries = [
-        { id: 1, entry: 'I am grateful for the sunshine.', timestamp: new Date() },
-        { id: 2, entry: 'I am grateful for my family.', timestamp: new Date() }
-    ];
-    res.status(200).json({ entries });
-});
+// app.get('/entries/data', (req, res) => {
+//     const entries = [
+//         { id: 1, entry: 'I am grateful for the sunshine.', timestamp: new Date() },
+//         { id: 2, entry: 'I am grateful for my family.', timestamp: new Date() }
+//     ];
+//     res.status(200).json({ entries });
+// });
 
 // Prompt route (using pre-defined prompts)
 const prompts = [
@@ -104,6 +81,22 @@ const prompts = [
 app.get('/prompt', (req, res) => {
     const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
     res.status(200).json({ prompt: randomPrompt });
+});
+
+app.post('/journal', async (req, res) => {
+    const { prompt, response } = req.body;
+    if (!prompt || !response) {
+      return res.status(400).json({ message: 'Prompt and response are required.' });
+    }
+  
+    try {
+      const entry = { prompt, response, timestamp: new Date() };
+      await db.collection('journalEntries').add(entry);
+      res.status(201).json({ message: 'Journal entry saved successfully.' });
+    } catch (error) {
+      console.error('Error saving entry:', error);
+      res.status(500).json({ message: 'Failed to save journal entry.' });
+    }
 });
 
 // Start the server
