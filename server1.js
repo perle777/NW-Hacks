@@ -2,24 +2,26 @@ require('dotenv').config();
 
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 const app = express();
 
 // Middleware to parse JSON
 app.use(express.json());
 
-// Test route (Home page)
-app.get('/', (req, res) => {
-    res.send('Welcome to the Gratitude Journal API!');
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Define routes for serving HTML pages
+app.get('/journal', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'journal.html'));
 });
 
-// Login route (For login page)
-app.post('/login', (req, res) => {
-    res.send('Login endpoint');
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
-// Signup route (For signup page)
-app.post('/signup', (req, res) => {
-    res.send('Signup endpoint');
+app.get('/entries', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'entries.html'));
 });
 
 // Journal route (For adding new journal entries)
@@ -53,7 +55,7 @@ app.post('/journal', async (req, res) => {
 });
 
 // Entries route (For viewing past journal entries)
-app.get('/entries', (req, res) => {
+app.get('/entries/data', (req, res) => {
     const entries = [
         { id: 1, entry: 'I am grateful for the sunshine.', timestamp: new Date() },
         { id: 2, entry: 'I am grateful for my family.', timestamp: new Date() }
@@ -105,4 +107,6 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+
 
