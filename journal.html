@@ -14,10 +14,21 @@
     <nav>
         <a href="home.html">Home</a>
         <a href="journal.html">Journal</a>
+        <a href="enries.html">Past Journals</a>
         <a href="login.html">Log In</a>
+
     </nav>
     <!-- test back-end button -->
     <button id="myButton">Click Me</button>
+
+    <section>
+        <form action="/submit" method="POST">
+            <label for="userInput">Enter your text:</label><br>
+            <input type="text" id="userInput" name="userInput"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
     <footer>
         <p>Contact Us: <a href="home.html">contact@journify.com</a></p>
         <p>Connect with our contributors:</p>
