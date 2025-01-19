@@ -180,10 +180,16 @@ footer {
     background-color: #D0EBE3;
 }
 
-footer a {
+footer a, p, li {
     background-color: #D0EBE3;
 }
 
-footer p {
+
+
+footer ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: #D0EBE3;
+    padding-left: 17px;
 }
+
