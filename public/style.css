@@ -79,7 +79,9 @@ nav {
     margin-left: 0px;
     margin-right: 0px;
 }
-
+body {
+    margin: 0;
+}
 a {
     text-decoration: none;
     background-color: #FAE9B2;
@@ -102,8 +104,11 @@ h1, h2 {
     text-decoration-color: #F8DEBA;
     text-decoration-thickness: 10%;
     color: 283D3B;
+    margin-top: 10px;
 }
-
+h2 {
+    margin-top: 20px;
+}
 p {
     font-family: "Lato", serif;
     font-weight: 400;
@@ -113,15 +118,36 @@ p {
 
 main {
     text-align: center;
-    margin-left: 20%;
-    margin-right: 20%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 main article {
-    margin: 10%;
+    margin: 7%;
     margin-bottom: 7%;
 }
+main img {
+    width: 300px;
+    
+    margin-top: 50px;
+    margin-left: 50px;
+}
 
+.flower2 {
+    margin-left: 75px;
+}
+
+.flower3 {
+    margin-left: 50%;
+    width: 110px;
+
+    margin-bottom: 41%;
+}
+
+.flower4 {
+    margin-left: 110px;
+    width: 100px;
+}
 button {
     background: #79AC9C;
     /* Simple plain color */
