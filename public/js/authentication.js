@@ -18,7 +18,7 @@ var uiConfig = {
             console.log("Error adding new user: ", error);
           });
       }
-      window.location.assign("../home/home.html");
+      window.location.assign("home.html");
       return false;
     },
     uiShown: function () {
@@ -26,7 +26,7 @@ var uiConfig = {
     },
   },
   signInFlow: "popup",
-  signInSuccessUrl: "../home/home.html",
+  signInSuccessUrl: "home.html",
   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
 };
 
