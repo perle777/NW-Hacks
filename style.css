@@ -85,7 +85,7 @@ a {
     background-color: #FAE9B2;
 }
 
-h1 {
+h1, h2 {
     font-family: "Julius Sans One", serif;
     font-size: 30px;
     text-decoration: underline;
